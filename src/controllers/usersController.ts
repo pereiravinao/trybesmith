@@ -1,9 +1,14 @@
 import { Request, Response } from 'express';
-import usersServices from '../services/usersServices';
+import * as usersServices from '../services/usersServices';
 import UserBody from '../interface/User';
+import Validate from '../interface/Validate';
 
-export default function create(req: Request, res: Response) {
+export const create = async (req: Request, res: Response) => {
   const userCreated: UserBody = req.body;
-  const { code, message } = usersServices(userCreated);
-  return res.status(code).send(message);
-}
+  const { code, message }: Validate = await usersServices.create(userCreated);
+  
+  return res.status(code).json(message);
+};
+
+// Retirado do PR do Michael caxias
+export const removeWarnLint = () => {};
