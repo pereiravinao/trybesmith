@@ -45,7 +45,6 @@ export const authentication = async (req: Request, res: Response, next: NextFunc
   if (!token) { return res.status(401).json({ error: 'Token not found' }); }
 
   const response = await verify(token);
-  console.log('RESPONSE :', response);
   
   if (Object.keys(response).length < 3) { 
     return res.status(401).json({ error: 'Invalid token' }); 
