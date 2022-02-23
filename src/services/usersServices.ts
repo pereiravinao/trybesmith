@@ -1,9 +1,9 @@
 import UserBody from '../interface/User';
-import validations from '../middlewares/validations';
+import * as validations from '../middlewares/validations';
 import * as auth from '../middlewares/auth';
 
 export const create = async (userCreated: UserBody) => {
-  const isValidation = validations.validate(userCreated);
+  const isValidation = validations.schemeNewUser.validate(userCreated);
   
   if (isValidation.error) { 
     const { message } = isValidation.error.details[0];
