@@ -21,3 +21,12 @@ export const schemeLogin = Joi.object({
     'string.min': '"password" must be longer than 7 characters',
   }),
 }).strict();
+
+export const schemeProducts = Joi.object({
+  name: Joi.string().required().min(3).messages({
+    'string.min': 'Name must be longer than 2 characters',
+  }),
+  amount: Joi.string().required().min(3).messages({
+    'string.min': 'Amount must be longer than 2 characters',
+  }),
+}).strict();
