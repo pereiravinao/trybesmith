@@ -7,12 +7,17 @@ export const create = async (userCreated: UserBody) => {
   
   if (isValidation.error) { 
     const { message } = isValidation.error.details[0];
-    const code = message.includes('is required') ? 400 : 422;    
-    return { code, message }; 
+    const code = message.includes('is required') ? 400 : 422;
+
+    // Logica para arrumar a string retirada do pR do Michael
+    const removeQuotes = message.replace(/"/g, '');
+    const newMessage = removeQuotes.charAt(0).toUpperCase() + removeQuotes.slice(1);
+    
+    return { code, message: { error: newMessage } }; 
   }
   const isAuth = auth.create(userCreated.username);
   
-  return { code: 201, message: isAuth };
+  return { code: 201, message: { token: isAuth } };
 };
 
 export const removeWarnLint = () => {};
