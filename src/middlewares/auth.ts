@@ -1,13 +1,13 @@
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 
 const secretJwt = process.env.JWT_SECRET || 'teste123';
 
 export const create = (username: string) => {
-  // const jwtConfig = {
-  //   expiresIn: '2h',
-  //   algorithm: 'HS256',
-  // };
-  const token = jwt.sign({ username }, secretJwt);
+  const jwtConfig: SignOptions = {
+    expiresIn: '2h',
+    algorithm: 'HS256',
+  };
+  const token = jwt.sign({ username }, secretJwt, jwtConfig);
   return token;
 };
 
