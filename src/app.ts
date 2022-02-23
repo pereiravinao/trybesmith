@@ -11,6 +11,8 @@ app.use(express.json());
 app.post('/users', usersController.create);
 app.post('/login', LoginController.login);
 
-app.post('/products', auth.authentication, productsController.create);
+app.route('/products')
+  .post(auth.authentication, productsController.create)
+  .get(auth.authentication, productsController.getAll);
 
 export default app;
