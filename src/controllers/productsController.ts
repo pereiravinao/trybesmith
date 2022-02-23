@@ -9,5 +9,7 @@ export const create = async (req: Request, res: Response) => {
   return res.status(code).json(message);
 };
 
-// Retirado do PR do Michael caxias
-export const removeWarnLint = () => {};
+export const getAll = async (req: Request, res: Response) => {
+  const { code, message } = await productsServices.getAll();
+  return res.status(code).json(message);
+};
