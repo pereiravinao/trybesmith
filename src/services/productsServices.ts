@@ -1,21 +1,10 @@
 import Product from '../interface/Product';
 import * as products from '../models/products';
 import * as validations from '../middlewares/validations';
-import * as auth from '../middlewares/auth';
 
-export const create = async (token: string, product: Product) => {
+export const create = async (product: Product) => {
   const isValidation = validations.schemeProducts.validate(product);
-  const isToken: any = await auth.verify(token);
-  console.log(isToken);
-  
-  if (!token) {    
-    return { code: 401, message: { error: 'Token not found' } };
-  }
-  
-  if (isToken.code) {    
-    return { code: 401, message: { error: 'Invalid token' } };
-  }
-  
+
   if (isValidation.error) {
     const { message } = isValidation.error.details[0];
     const code = message.includes('is required') ? 400 : 422;

@@ -4,9 +4,7 @@ import Product from '../interface/Product';
 
 export const create = async (req: Request, res: Response) => {
   const productCreated: Product = req.body;
-  const isToken: any = req.headers.authorization;
-  const { code, message } = await productsServices.create(isToken, productCreated);
-  console.log(code, message);
+  const { code, message } = await productsServices.create(productCreated);
   
   return res.status(code).json(message);
 };
