@@ -19,4 +19,8 @@ export const create = async (product: Product) => {
   return { code: 201, message: { item: newProduct } };
 };
 
-export const removeWarnLint = () => {};
+export const getAll = async () => {
+  const allProducts = await products.getAll();
+
+  return { code: 200, message: allProducts };
+};
