@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from 'express';
 import jwt, { SignOptions } from 'jsonwebtoken';
 
 const secretJwt = process.env.JWT_SECRET || 'teste123';
@@ -24,24 +25,31 @@ export const create = (username: string) => {
   return token;
 };
 
-export const verify = (token: string) => {
+export const verify = async (token: string) => {
   try {
-    const decoded = jwt.verify(token, secretJwt) as TokenInterface;
+    const decoded = await jwt.verify(token, secretJwt) as TokenInterface;
     return decoded;
   } catch (err) {
     const error: TokenError = {
       message: 'Expired or invalid token',
       code: '401',
     };
+
     return error;
   }
 };
 
-// export const authentication = (token: string) => {
-//   if (!token) { return { code: 401, message: 'Token not found' }; }
+export const authentication = async (req: Request, res: Response, next: NextFunction) => {
+  const token = req.headers.authorization;
+  
+  if (!token) { return res.status(401).json({ error: 'Token not found' }); }
 
-//   const response = verify(token);
-//   if (response.code === '401') { return { code: 401, message: 'Expired or invalid token' }; }
+  const response = await verify(token);
+  console.log('RESPONSE :', response);
+  
+  if (Object.keys(response).length < 3) { 
+    return res.status(401).json({ error: 'Invalid token' }); 
+  }
 
-//   return response.email;
-// };
+  next();
+};
