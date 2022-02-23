@@ -2,6 +2,19 @@ import jwt, { SignOptions } from 'jsonwebtoken';
 
 const secretJwt = process.env.JWT_SECRET || 'teste123';
 
+interface TokenInterface {
+  data: {
+    username: string;
+    password: string;
+  };
+}
+
+interface TokenError {
+  message: string;
+  code: string;
+
+}
+
 export const create = (username: string) => {
   const jwtConfig: SignOptions = {
     expiresIn: '2h',
@@ -13,12 +26,13 @@ export const create = (username: string) => {
 
 export const verify = (token: string) => {
   try {
-    const decode = jwt.verify(token, secretJwt);
-    return decode;
+    const decoded = jwt.verify(token, secretJwt) as TokenInterface;
+    return decoded;
   } catch (err) {
-    const error = new Error();
-    // error.message = 'Expired or invalid token';
-    // error.code = '401';
+    const error: TokenError = {
+      message: 'Expired or invalid token',
+      code: '401',
+    };
     return error;
   }
 };
