@@ -15,4 +15,10 @@ export const create = async (product: Product) => {
   return newUser;
 };
 
-export const removeWarnLint = () => {};
+export const getAll = async () => {
+  const query = `
+  SELECT * FROM Trybesmith.Products`;
+  const [data] = await connection.execute<ResultSetHeader>(query);
+  
+  return data;
+};
