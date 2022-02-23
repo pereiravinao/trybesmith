@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const schemeNewUser = Joi.object({
+export const schemeNewUser = Joi.object({
   username: Joi.string().required().min(3).messages({
     'string.min': '"username" must be longer than 2 characters',
   }),
@@ -13,4 +13,11 @@ const schemeNewUser = Joi.object({
   }),
 }).strict();
 
-export default schemeNewUser;
+export const schemeLogin = Joi.object({
+  username: Joi.string().required().min(3).messages({
+    'string.min': '"username" must be longer than 2 characters',
+  }),
+  password: Joi.string().required().min(8).messages({
+    'string.min': '"password" must be longer than 7 characters',
+  }),
+}).strict();
