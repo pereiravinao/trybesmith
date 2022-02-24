@@ -30,3 +30,23 @@ export const schemeProducts = Joi.object({
     'string.min': 'Amount must be longer than 2 characters',
   }),
 }).strict();
+
+export const schemeOrders = Joi.array().items(Joi.number()
+  .messages({ 'string.min': 'Products must be an array of numbers',
+  }));
+
+interface Product {
+  products: Array<number | string>
+}
+
+export const schemeOrdersJoi = ({ products }: Product) => {
+  console.log({ products });
+  if (!products) { return { error: { code: 400, message: 'Products is required' } }; }
+  if (!Array.isArray(products)) { 
+    return { error: { code: 422, message: 'Products must be an array of numbers' } }; 
+  }
+  if (products.length === 0) { 
+    return { error: { code: 422, message: 'Products can\'t be empty' } }; 
+  }
+  return { code: 201, message: 'Ok' };
+};
