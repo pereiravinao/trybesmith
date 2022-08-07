@@ -1,5 +1,11 @@
 # 🚧 README em construção 🚧
 
+Neste projeto tinhamos que:
+
+- Declarar variáveis e funções com tipagens Typescript;
+
+- Construir uma API Node Express utilizando o Typescript.
+
 <!-- Olá, Tryber!
 
 Esse é apenas um arquivo inicial para o README do seu projeto.
