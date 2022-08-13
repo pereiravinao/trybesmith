@@ -1,22 +1,17 @@
-# 🚧 README em construção 🚧
 
-Neste projeto tinhamos que:
+# TrybeSmith
 
+Criar uma loja de itens medievais, no formato de uma API, utilizando Typescript.
+Desenvolver todas as camadas da aplicação (Models, Service e Controllers) e, por meio dessa aplicação, é possível realizar as operações básicas que se pode fazer em um determinado banco de dados: Create, Read, Update e Delete.
+
+## 🛠 Habilidades
 - Declarar variáveis e funções com tipagens Typescript;
-
 - Construir uma API Node Express utilizando o Typescript.
 
-<!-- Olá, Tryber!
+## Autores
+- [@pereiravinao](https://www.github.com/pereiravinao)
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+## Apêndice
+Este projeto contém uma estrutura de aplicação em NodeJs criado e configurado pela escola Trybe
 
-É essencial que você preencha esse documento por conta própria, ok?
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
